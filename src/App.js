@@ -4,6 +4,7 @@ import CharacterCard from './components/CharacterCard';
 import Welcome from './components/WelcomePage';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import SearchForm from "./components/SearchForm.js";
 
 
 export default function App() {
@@ -40,17 +41,24 @@ export default function App() {
       </Route>
       <Route exact path = '/characters'>
         <div>
-          <ul>
+          <SearchForm onChange = {handleChange} search = {search} />
             {searchResults.map(character => (
-              <li key={character.id}>{character.name}</li>
+              <>
+                
+                <div key={character.id}>
+                <img  src = {character.image}  alt = {character.name} />
+                </div>
+                <div>
+                  <h2>{character.name}</h2>
+                </div>
+                </>
             ))}
-          </ul> 
         </div>
-        <div>
+        {/* <div>
           {character.map (char => {
             return <CharacterCard onChange = {handleChange} name = {char.name} search = {search} gender = {char.gender} status = {char.status} img = {char.image}  alt = {char.name} />
             })}
-        </div>
+        </div> */}
       </Route>
         
     </main>
